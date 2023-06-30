@@ -39,12 +39,14 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\Wobz\\MakerBundle\\": "src/Wobz/MakerBundle/"
+            "App\\Wobz\\MakerBundle\\": "src/Wobz/MakerBundle/",
+            "App\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Wobz\\MakerBundle\\": "src/Wobz/MakerBundle/"
+            "App\\Wobz\\MakerBundle\\": "src/Wobz/MakerBundle/",
+            "App\\": "src/"
         }
     },
     "scripts": {
