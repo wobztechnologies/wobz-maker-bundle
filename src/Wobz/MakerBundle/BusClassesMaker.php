@@ -23,7 +23,7 @@ class BusClassesMaker extends AbstractMaker
 
     public static function getCommandName(): string
     {
-        return 'make:bus';
+        return 'make:bus-message';
     }
 
     public static function getCommandDescription(): string
@@ -120,7 +120,7 @@ class BusClassesMaker extends AbstractMaker
 
         $generator->generateClass(
             $classNameDetails->getFullName(),
-            'src/Wobz/MakerBundle/templates/Bus.tpl.php',
+            __DIR__ . '/templates/Bus.tpl.php',
             [
                 'busFolder' => $busFolderPascalCase,
                 'busType' => $busType,
@@ -132,7 +132,7 @@ class BusClassesMaker extends AbstractMaker
 
         $generator->generateClass(
             $classNameDetailsHandler->getFullName(),
-            'src/Wobz/MakerBundle/templates/BusHandler.tpl.php',
+            __DIR__ . '/templates/BusHandler.tpl.php',
             [
                 'busFolder' => $busFolderPascalCase,
                 'busType' => $busType,
@@ -144,7 +144,7 @@ class BusClassesMaker extends AbstractMaker
 
         $generator->generateClass(
             $classNameDetailsTest->getFullName(),
-            'src/Wobz/MakerBundle/templates/BusTest.tpl.php',
+            __DIR__ . '/templates/BusTest.tpl.php',
             [
                 'busFolder' => $busFolderPascalCase,
                 'busType' => $busType,
@@ -262,7 +262,7 @@ class BusClassesMaker extends AbstractMaker
                     autoconfigure: false
             YAML;
 
-        $yamlFile = "%kernel.project_dir%/config/services.yaml";
+        $yamlFile = "./config/services.yaml";
         $existingContent = file_get_contents($yamlFile);
         $updatedContent = $existingContent . PHP_EOL . $yamlContent;
         file_put_contents($yamlFile, $updatedContent);
