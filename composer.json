@@ -1,5 +1,16 @@
 {
-    "type": "project",
+    "name": "wobz/maker-bundle",
+    "type": "Maker",
+    "description": "Maker of bus message for onion architecture",
+    "keywords": ["maker","maker-bundle","symfony", "symfony-bundle", "onion", "bus"],
+    "homepage": "https://github.com/Floberrot",
+    "authors": [
+        {
+            "name": "Florian Berrot",
+            "email": "florian.b@dalvin.Fr",
+            "role": "Developer"
+        }
+    ],
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
