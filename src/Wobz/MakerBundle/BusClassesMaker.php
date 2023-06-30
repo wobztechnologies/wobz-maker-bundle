@@ -38,7 +38,7 @@ class BusClassesMaker extends AbstractMaker
             ->addArgument(
                 'bus-name',
                 InputArgument::REQUIRED,
-                sprintf('Bus name (e.g. <fg=yellow>%s</>)', "CreateOrder, GetOrder or UpdateOrder etc...")
+                sprintf('Bus name for example, action, use case... (e.g. <fg=yellow>%s</>)', "CreateOrder, GetOrder or UpdateOrder etc...")
             )
             ->addArgument(
                 'bus-type',
@@ -262,7 +262,7 @@ class BusClassesMaker extends AbstractMaker
                     autoconfigure: false
             YAML;
 
-        $yamlFile = "%kernel.project_dir%/config.yaml";
+        $yamlFile = "%kernel.project_dir%/config/services.yaml";
         $existingContent = file_get_contents($yamlFile);
         $updatedContent = $existingContent . PHP_EOL . $yamlContent;
         file_put_contents($yamlFile, $updatedContent);
