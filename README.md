@@ -25,21 +25,21 @@ php bin/console make:wobz-bus-message
 ```
 
 ## Example 📖
-* After you run the command, fill all the fields and you will get the following:
+* After you run the command, fill all the fields and you will get the following:  
 ![beginning](public/img.png)
 
-* Add some properties to your bus message:
+* Add some properties to your bus message:  
 ![string](public/img_1.png)
 ![bool](public/img_2.png)
 ![datetime](public/img_3.png)
 
-* After you finish, you will get the following:
+* After you finish, you will get the following:  
 ![end](public/img_5.png)
-
-* You can find your bus message here:
+  
+* You can find your bus message here:  
 ![archi](public/img_6.png)
-* And you will have your properties !  
-
+* And you will have your properties !    
+  
 ![prop](public/img_7.png)
 ![prop](public/img_8.png)
 
