@@ -14,7 +14,7 @@
     "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "require": {
+    "require-dev": {
         "php": ">=8.1",
         "ext-ctype": "*",
         "ext-iconv": "*",
@@ -46,11 +46,6 @@
         "psr-4": {
             "App\\Wobz\\MakerBundle\\": "src/Wobz/MakerBundle/"
         }
-    },
-    "replace": {
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php72": "*"
     },
     "scripts": {
         "auto-scripts": {
