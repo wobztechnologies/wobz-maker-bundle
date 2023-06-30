@@ -1,6 +1,6 @@
 {
     "name": "wobz/maker-bundle",
-    "type": "Maker",
+    "type": "maker",
     "description": "Maker of bus message for onion architecture",
     "keywords": ["maker","maker-bundle","symfony", "symfony-bundle", "onion", "bus"],
     "homepage": "https://github.com/Floberrot",
@@ -22,7 +22,7 @@
         "symfony/dotenv": "5.4.*",
         "symfony/flex": "^1.17|^2",
         "symfony/framework-bundle": "5.4.*",
-        "symfony/maker-bundle": "^1.49",
+        "symfony/maker-bundle": "^v1.39.1",
         "symfony/runtime": "5.4.*",
         "symfony/yaml": "5.4.*"
     },
