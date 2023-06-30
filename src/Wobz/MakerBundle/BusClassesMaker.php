@@ -21,12 +21,6 @@ class BusClassesMaker extends AbstractMaker
 {
     use MakerOptionsTrait;
 
-    public function __construct(
-        private readonly string $config_folder,
-    )
-    {
-    }
-
     public static function getCommandName(): string
     {
         return 'make:bus';
@@ -226,7 +220,7 @@ class BusClassesMaker extends AbstractMaker
         $defaultType = 'string';
         $snakeCasedField = Str::asSnakeCase($fieldName);
 
-        if ('_at' == $suffix = substr($snakeCasedField, -3) || str_contains($snakeCasedField, 'date')) {
+        if ('_at' == $suffix = substr($snakeCasedField, -3)) {
             $defaultType = 'datetime';
         } elseif ('_id' == $suffix) {
             $defaultType = 'int';
@@ -268,7 +262,7 @@ class BusClassesMaker extends AbstractMaker
                     autoconfigure: false
             YAML;
 
-        $yamlFile = $this->config_folder . "/services.yaml";
+        $yamlFile = "%kernel.project_dir%/config.yaml";
         $existingContent = file_get_contents($yamlFile);
         $updatedContent = $existingContent . PHP_EOL . $yamlContent;
         file_put_contents($yamlFile, $updatedContent);
