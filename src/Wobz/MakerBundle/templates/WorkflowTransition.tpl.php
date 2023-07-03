@@ -49,9 +49,9 @@ final class <?= $transitionName ?> extends Abstract<?= $workflowNamePascalCase ?
     public static function getSubscribedEvents(): array
     {
         return [
-            "workflow.<?= $workflowNameSnackCase ?>.guard.<?= $transitionNameSnackCase ?>" => "guard<?= $transitionName ?>",
-            "workflow.<?= $workflowNameSnackCase ?>.make.<?= $transitionNameSnackCase ?>" => "make<?= $transitionName ?>",
-            "workflow.<?= $workflowNameSnackCase ?>.complete.<?= $transitionNameSnackCase ?>" => "complete<?= $transitionName ?>",
+            "workflow.<?= $workflowNameSnackCase ?>_workflow.guard.<?= $transitionNameSnackCase ?>" => "guard<?= $transitionName ?>",
+            "workflow.<?= $workflowNameSnackCase ?>_workflow.make.<?= $transitionNameSnackCase ?>" => "make<?= $transitionName ?>",
+            "workflow.<?= $workflowNameSnackCase ?>_workflow.complete.<?= $transitionNameSnackCase ?>" => "complete<?= $transitionName ?>",
         ];
     }
 }

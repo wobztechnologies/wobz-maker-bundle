@@ -13,6 +13,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Question\Question;
+use InvalidArgumentException;
 
 /**
  * @method string getCommandDescription()
@@ -209,7 +210,7 @@ class BusClassesMaker extends AbstractMaker
                 return $name;
 
             if (in_array($name, $fields))
-                throw new \InvalidArgumentException(sprintf('The "%s" property already exists.', $name));
+                throw new InvalidArgumentException(sprintf('The "%s" property already exists.', $name));
 
             return $name;
         });

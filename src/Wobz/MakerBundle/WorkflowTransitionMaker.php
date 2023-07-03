@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
+use Exception;
 
 /**
  * @method string getCommandDescription()
@@ -186,9 +187,6 @@ final class WorkflowTransitionMaker extends AbstractMaker
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $string));
     }
 
-    /**
-     * @throws \Exception
-     */
     private static function getDynamicPlaceName(string $initialPlace, array $configEntityContent, string $workflowName): string
     {
         foreach ($configEntityContent['entity'] as $entity) {
@@ -204,7 +202,7 @@ final class WorkflowTransitionMaker extends AbstractMaker
         }
 
         if (!isset($place))
-            throw new \Exception("The workflow name $workflowName (and entities) is not found in the config file.");
+            throw new Exception("The workflow name $workflowName (and entities) is not found in the config file.");
 
         return $place;
     }
