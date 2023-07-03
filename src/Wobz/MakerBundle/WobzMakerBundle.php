@@ -15,5 +15,9 @@ class WobzMakerBundle extends Bundle
         $container->register(BusClassesMaker::class)
             ->addTag('maker.bus.command')
             ->setAutoconfigured(true);
+
+        $container->register(WorkflowTransitionMaker::class)
+            ->addTag('maker.workflow.transition.command')
+            ->setAutoconfigured(true);
     }
 }
