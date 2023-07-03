@@ -102,7 +102,7 @@ final class WorkflowTransitionMaker extends AbstractMaker
 
         $generator->generateClass(
             $classNameDetails->getFullName(),
-            './templates/WorkflowTransition.tpl.php',
+            __DIR__ . '/templates/WorkflowTransition.tpl.php',
             [
                 'useStatements' => $useStatements,
                 'workflowNameCameCase' => lcfirst($workflowName),
