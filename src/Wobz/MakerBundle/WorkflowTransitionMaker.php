@@ -102,7 +102,7 @@ final class WorkflowTransitionMaker extends AbstractMaker
 
         $generator->generateClass(
             $classNameDetails->getFullName(),
-            'src/Wobz/MakerBundle/templates/WorkflowTransition.tpl.php',
+            './templates/WorkflowTransition.tpl.php',
             [
                 'useStatements' => $useStatements,
                 'workflowNameCameCase' => lcfirst($workflowName),
@@ -196,8 +196,9 @@ final class WorkflowTransitionMaker extends AbstractMaker
                 continue;
 
             $entityName = key($entity);
-            if ($entity[$entityName]['enum']['method'] !== null)
-                $place = $entity[$entityName]['enum']['fqcn']::from($initialPlace)->$entity[$entityName]['enum']['method']();
+            $function = $entity[$entityName]['enum']['method'];
+            if ($function !== null)
+                $place = $entity[$entityName]['enum']['fqcn']::from($initialPlace)->$function();
             else
                 $place = $entity[$entityName]['enum']['fqcn']::from($initialPlace)->value;
         }
