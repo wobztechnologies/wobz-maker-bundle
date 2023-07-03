@@ -4,12 +4,21 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    wobz_workflow:
+        entity:
+#            TODO: add your own entities here in your services.yaml for your project
+#            - Order:
+#                fqcn: App\Infrastructure\Persistence\Orders
+#                enum:
+#                    fqcn: App\Domain\Model\ObjectValues\Workflow\OrderStatusEnum
+#                    method: getTraduction
 
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -23,11 +32,8 @@ services:
     App\Wobz\MakerBundle\BusClassesMaker:
         public: true
 
+    App\Wobz\MakerBundle\WorkflowTransitionsMaker:
+        public: true
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\Application\Query\Folder\GetSomething\GetSomethingHandler:
-        tags: [ { name: messenger.message_handler, bus: query.bus } ]
-        autoconfigure: false
-    App\Application\Query\Folder\GetSomething\GetSomethingHandler:
-        tags: [ { name: messenger.message_handler, bus: query.bus } ]
-        autoconfigure: false
