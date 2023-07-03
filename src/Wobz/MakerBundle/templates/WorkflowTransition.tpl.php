@@ -50,8 +50,8 @@ final class <?= $transitionName ?> extends Abstract<?= $workflowNamePascalCase ?
     {
         return [
             "workflow.<?= $workflowNameSnackCase ?>_workflow.guard.<?= $transitionNameSnackCase ?>" => "guard<?= $transitionName ?>",
-            "workflow.<?= $workflowNameSnackCase ?>_workflow.make.<?= $transitionNameSnackCase ?>" => "make<?= $transitionName ?>",
-            "workflow.<?= $workflowNameSnackCase ?>_workflow.complete.<?= $transitionNameSnackCase ?>" => "complete<?= $transitionName ?>",
+            "workflow.<?= $workflowNameSnackCase ?>_workflow.transition.<?= $transitionNameSnackCase ?>" => "make<?= $transitionName ?>",
+            "workflow.<?= $workflowNameSnackCase ?>_workflow.completed.<?= $transitionNameSnackCase ?>" => "complete<?= $transitionName ?>",
         ];
     }
 }

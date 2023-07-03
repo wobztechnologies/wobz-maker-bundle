@@ -4,14 +4,6 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    wobz_workflow:
-        entity:
-#            TODO: add your own entities here in your services.yaml for your project
-#            - Order:
-#                fqcn: App\Infrastructure\Persistence\Orders
-#                enum:
-#                    fqcn: App\Domain\Model\ObjectValues\Workflow\OrderStatusEnum
-#                    method: getTraduction
 
 services:
     # default configuration for services in *this* file
