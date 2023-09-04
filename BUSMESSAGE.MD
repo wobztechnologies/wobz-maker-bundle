@@ -1,6 +1,6 @@
 # Bus Message 🚀
 ```bash 
-php bin/console make:wobz-bus-message
+php bin/console make:bus-message
 ```
 
 ## Started 📖
@@ -27,7 +27,14 @@ src/Application/Query/GetSomething/
 
 ![prop](public/img_7.png)  
 
-**Your services.yaml is updated to ! (you can change it if you want)**
+**Your services.yaml is updated to ! (you can change it if you want)**  
+ps: by default, yaml in services.yaml is not updated, you have to add `-y=true` to the command.  
+Without this, you will have this type of configuration:
+```php
+#[AsMessageHandler(bus: 'BUSTYPE.bus')]    
+```
+
+
 ```yaml
     App\Application\Query\Folder\GetSomething\GetSomethingHandler:
         tags: [ { name: messenger.message_handler, bus: query.bus } ]
