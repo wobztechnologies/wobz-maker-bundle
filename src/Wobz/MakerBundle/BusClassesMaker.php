@@ -50,6 +50,13 @@ class BusClassesMaker extends AbstractMaker
                 'bus-folder',
                 InputArgument::REQUIRED,
                 sprintf('Bus folder (Where in bus type, if the folder already exist, the classes will be in it) (e.g. <fg=yellow>%s</>)', "Orders, File, Invoice etc...")
+            )
+            ->addOption(
+                'yaml',
+                'y',
+                InputArgument::OPTIONAL,
+                'with yaml configuration',
+                false
             );
     }
 
@@ -63,6 +70,8 @@ class BusClassesMaker extends AbstractMaker
         $busName = $input->getArgument('bus-name');
         $busType = $input->getArgument('bus-type');
         $busFolder = $input->getArgument('bus-folder');
+        $isYaml = $input->getOption('yaml');
+
         $busNamePascalCase = Str::asClassName($busName);
         $busFolderPascalCase = Str::asClassName($busFolder);
 
@@ -130,7 +139,7 @@ class BusClassesMaker extends AbstractMaker
                 'hasDate' => $hasDate,
             ]
         );
-
+        $lowerBusType = strtolower($busType);
         $generator->generateClass(
             $classNameDetailsHandler->getFullName(),
             __DIR__ . '/templates/BusHandler.tpl.php',
@@ -140,6 +149,8 @@ class BusClassesMaker extends AbstractMaker
                 'busName' => $busNamePascalCase,
                 'busNameCamelCase' => lcfirst($busNamePascalCase),
                 'variables' => $fields,
+                'busTypeMessage' => '"' . $lowerBusType . '.bus"',
+                'isYaml' => $isYaml,
             ]
         );
 
@@ -154,7 +165,8 @@ class BusClassesMaker extends AbstractMaker
         );
 
         $generator->writeChanges();
-        $this->writeYamlChanges($busType, $busFolderPascalCase, $busNamePascalCase);
+        if ($isYaml)
+            $this->writeYamlChanges($busType, $busFolderPascalCase, $busNamePascalCase);
 
         $message = [
             "path" => "src/Application/$busType/$busFolder/$busName/$busName.php",

@@ -3,7 +3,13 @@
 namespace App\Application\<?= $busType ?>\<?= $busFolder ?>\<?= $busName ?>;
 
 // TODO: Infrastructure forbidden here, only Domain/Application.
+<?php if (!$isYaml):?>
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+<?php endif; ?>
 
+<?php if (!$isYaml):?>
+#[AsMessageHandler(bus: <?= $busTypeMessage ?>)]
+<?php endif; ?>
 final class <?= $busName ?>Handler
 {
     public function __construct()
