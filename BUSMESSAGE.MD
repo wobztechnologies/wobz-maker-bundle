@@ -1,6 +1,6 @@
 # Bus Message 🚀
 ```bash 
-php bin/console make:wobz-bus-message
+php bin/console make:bus-message
 ```
 
 ## Started 📖
@@ -28,10 +28,19 @@ src/Application/Query/GetSomething/
 ![prop](public/img_7.png)  
 
 **Your services.yaml is updated to ! (you can change it if you want)**
+
 ```yaml
     App\Application\Query\Folder\GetSomething\GetSomethingHandler:
         tags: [ { name: messenger.message_handler, bus: query.bus } ]
         autoconfigure: false
+```  
+  
+**Handler default configuration:**  
+  
+By default, yaml in services.yaml is not updated, you have to add `-y=true` to the command.  
+Without this, you will have this type of configuration:
+```php
+#[AsMessageHandler(bus: 'BUSTYPE.bus')]    
 ```
 
 **For test class, you have to check in your composer and config yaml to create it where you want**
