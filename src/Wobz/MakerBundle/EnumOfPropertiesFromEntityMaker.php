@@ -53,13 +53,15 @@ class EnumOfPropertiesFromEntityMaker implements MakerInterface
 
         $reflectionClass = new ReflectionClass("App\\Infrastructure\\Persistence\\Entity\\$entityName");
         $listOfProperties = $reflectionClass->getProperties();
-        $listOfPropertiesWithConstNameAndValue = array_map(function ($property) {
-            return [$this->camelCaseToUpperCaseWithUnderscores($property) => $property];
-        }, $listOfProperties);
+        $listOfPropertiesWithConstNameAndValue = [];
+        foreach ($listOfProperties as $property) {
+            $listOfPropertiesWithConstNameAndValue[$this->camelCaseToUpperCaseWithUnderscores($property->getName())] = $property->getName();
+        };
+
 
         $classNameDetails = $generator->createClassNameDetails(
             $entityName . "Assembler",
-            'App\\Infrastructure\\DTO\\Enums\\',
+            'Infrastructure\\DTO\\Enums\\',
             'Enum'
         );
 
@@ -74,6 +76,17 @@ class EnumOfPropertiesFromEntityMaker implements MakerInterface
         );
 
         $generator->writeChanges();
+
+
+        $filepath = 'src/Infrastructure/DTO/Enums/' . $classNameDetails->getShortName() .'.php';
+        $filesInfo[] = [
+            "path" => $filepath,
+            "name" => $classNameDetails->getShortName(),
+        ];
+
+        $comment = "You can now use your enum in your DTOs/Assemblers !";
+
+        $this->end($io, $filesInfo, $comment);
     }
 
     public function __call(string $name, array $arguments)
