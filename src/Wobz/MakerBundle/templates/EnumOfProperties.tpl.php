@@ -4,7 +4,7 @@ namespace App\Infrastructure\DTO\Enums;
 
 enum <?= $enumName ?>: string
 {
-<?php foreach ($listOfPropertiesWithConstNameAndValue as $caseName => $propertyName): ?>
+<?php foreach (listOfProperties as $caseName => $propertyName): ?>
     case <?= $caseName ?> = "<?= $propertyName ?>";
 <?php endforeach; ?>
 }
