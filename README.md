@@ -23,6 +23,7 @@ composer require wobz/maker-bundle:last-version --dev
 ## Usage 🚀
 * [Bus message maker](BUSMESSAGE.MD)
 * [Workflow transition maker](WORKFLOW.MD)
+* [Enum of entities maker](ENUM_OF_PROPERTIES.MD)
 
 ## Contributing 🤝
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
