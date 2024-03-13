@@ -10,3 +10,4 @@
 ###< symfony/framework-bundle ###
 *.lock
 .idea/*
+src/Kernel.php
