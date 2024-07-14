@@ -19,9 +19,5 @@ class WobzMakerBundle extends Bundle
         $container->register(WorkflowTransitionMaker::class)
             ->addTag('maker.workflow.transition.command')
             ->setAutoconfigured(true);
-
-        $container->register(EnumOfPropertiesFromEntityMaker::class)
-            ->addTag('maker.enum.from.entity.command')
-            ->setAutoconfigured(true);
     }
 }

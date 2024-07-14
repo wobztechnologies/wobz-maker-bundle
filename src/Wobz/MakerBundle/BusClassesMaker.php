@@ -93,8 +93,9 @@ class BusClassesMaker extends AbstractMaker
             $fields[] = $newField;
             $isFirstField = false;
 
-            if (null === $newField)
+            if (null === $newField) {
                 break;
+            }
         }
 
         $classNameDetails = $generator->createClassNameDetails(
@@ -124,8 +125,9 @@ class BusClassesMaker extends AbstractMaker
 
             $value['name'] = lcfirst(Str::asClassName($value['name']));
 
-            if ($value['type'] === "datetime")
+            if ($value['type'] === "datetime") {
                 $hasDate = true;
+            }
         }
 
         $generator->generateClass(
@@ -165,8 +167,9 @@ class BusClassesMaker extends AbstractMaker
         );
 
         $generator->writeChanges();
-        if ($isYaml)
+        if ($isYaml) {
             $this->writeYamlChanges($busType, $busFolderPascalCase, $busNamePascalCase);
+        }
 
         $message = [
             "path" => "src/Application/$busType/$busFolder/$busName/$busName.php",
@@ -218,24 +221,27 @@ class BusClassesMaker extends AbstractMaker
         }
 
         $fieldName = $io->ask($questionText, null, function ($name) use ($fields) {
-            if (!$name)
+            if (!$name) {
                 return $name;
+            }
 
-            if (in_array($name, $fields))
+            if (in_array($name, $fields)) {
                 throw new InvalidArgumentException(sprintf('The "%s" property already exists.', $name));
+            }
 
             return $name;
         });
 
-        if (!$fieldName)
+        if (!$fieldName) {
             return null;
+        }
 
         $defaultType = 'string';
         $snakeCasedField = Str::asSnakeCase($fieldName);
 
-        if ('_at' == $suffix = substr($snakeCasedField, -3)) {
+        if ('_at' === ($suffix = substr($snakeCasedField, -3))) {
             $defaultType = 'datetime';
-        } elseif ('_id' == $suffix) {
+        } elseif ('_id' === $suffix) {
             $defaultType = 'int';
         } elseif (str_starts_with($snakeCasedField, 'is_')) {
             $defaultType = 'bool';

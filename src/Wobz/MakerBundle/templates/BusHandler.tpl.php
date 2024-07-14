@@ -10,7 +10,7 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 <?php if (!$isYaml):?>
 #[AsMessageHandler(bus: <?= $busTypeMessage ?>)]
 <?php endif; ?>
-final class <?= $busName ?>Handler
+final readonly class <?= $busName ?>Handler
 {
     public function __construct()
     {
