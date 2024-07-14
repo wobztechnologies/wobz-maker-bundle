@@ -17,7 +17,7 @@ return RectorConfig::configure()
     ])
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withSets([
-        SymfonySetList::SYMFONY_61,
+        SymfonySetList::SYMFONY_71,
         SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
         SymfonySetList::SYMFONY_CODE_QUALITY,
     ])
