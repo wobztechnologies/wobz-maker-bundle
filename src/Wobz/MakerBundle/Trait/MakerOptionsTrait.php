@@ -10,8 +10,9 @@ trait MakerOptionsTrait
     {
         $io->newLine();
 
-        if (!is_null($yamlFile))
+        if (!is_null($yamlFile)) {
             $io->writeln("<info> $yamlFile</info> is updated");
+        }
         $io->newLine();
 
         foreach ($filesInfo as $fileInfo) {
@@ -20,8 +21,9 @@ trait MakerOptionsTrait
         }
 
         $io->newLine();
-        if (!is_null($comment))
+        if (!is_null($comment)) {
             $io->writeln("<comment> $comment</comment>");
+        }
 
         $io->newLine();
         $io->success("Have fun Wobzer!");

@@ -77,14 +77,14 @@ final class WorkflowTransitionMaker extends AbstractMaker
             $configEntity = "./config/services.yaml";
             $configEntityContent = Yaml::parseFile($configEntity)['parameters']['wobz_workflow'];
 
-            $startPlace = self::getDynamicPlaceName($startPlaceInitial, $configEntityContent, $workflowName);
-            $endPlace = self::getDynamicPlaceName($endPlace, $configEntityContent, $workflowName);
+            $startPlace = $this->getDynamicPlaceName($startPlaceInitial, $configEntityContent, $workflowName);
+            $endPlace = $this->getDynamicPlaceName($endPlace, $configEntityContent, $workflowName);
         }
 
         $transitionName = "From{$startPlace}To{$endPlace}";
         $workflowNamePascalCase = ucwords($workflowName);
-        $workflowNameSnackCase = self::camelCaseToSnakeCase($workflowName);
-        $transitionNameSnackCase = self::camelCaseToSnakeCase($transitionName);
+        $workflowNameSnackCase = $this->camelCaseToSnakeCase($workflowName);
+        $transitionNameSnackCase = $this->camelCaseToSnakeCase($transitionName);
 
         $classNameDetails = $generator->createClassNameDetails(
             $transitionName,
@@ -131,8 +131,9 @@ final class WorkflowTransitionMaker extends AbstractMaker
 
     public function __call(string $name, array $arguments): mixed
     {
-        if (method_exists($this, $name))
+        if (method_exists($this, $name)) {
             return $this->$name(...$arguments);
+        }
 
         return null;
     }
@@ -149,8 +150,8 @@ final class WorkflowTransitionMaker extends AbstractMaker
 
     private function writeYamlChanges(string $workflowName, string $transitionName, string $startStatus, string $endStatus): void
     {
-        $yamlWorkflowName = self::camelCaseToSnakeCase($workflowName) . "_workflow";
-        $yamlTransitionName = self::camelCaseToSnakeCase($transitionName);
+        $yamlWorkflowName = $this->camelCaseToSnakeCase($workflowName) . "_workflow";
+        $yamlTransitionName = $this->camelCaseToSnakeCase($transitionName);
         $yamlFile = "./config/packages/workflow.yaml";
 
         $existingData = Yaml::parseFile($yamlFile);
@@ -182,27 +183,30 @@ final class WorkflowTransitionMaker extends AbstractMaker
         $filesystem->dumpFile($yamlFile, $yaml);
     }
 
-    private static function camelCaseToSnakeCase(string $string): string
+    private function camelCaseToSnakeCase(string $string): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $string));
     }
 
-    private static function getDynamicPlaceName(string $initialPlace, array $configEntityContent, string $workflowName): string
+    private function getDynamicPlaceName(string $initialPlace, array $configEntityContent, string $workflowName): string
     {
         foreach ($configEntityContent['entity'] as $entity) {
-            if (key($entity) !== $workflowName)
+            if (key($entity) !== $workflowName) {
                 continue;
+            }
 
             $entityName = key($entity);
             $function = $entity[$entityName]['enum']['method'];
-            if ($function !== null)
+            if ($function !== null) {
                 $place = $entity[$entityName]['enum']['fqcn']::from($initialPlace)->$function();
-            else
+            } else {
                 $place = $entity[$entityName]['enum']['fqcn']::from($initialPlace)->value;
+            }
         }
 
-        if (!isset($place))
+        if (!isset($place)) {
             throw new Exception("The workflow name $workflowName (and entities) is not found in the config file.");
+        }
 
         return $place;
     }

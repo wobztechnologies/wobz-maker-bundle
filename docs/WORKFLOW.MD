@@ -5,7 +5,7 @@ php bin/console make:workflow-transition
 
 **After your un the command, fill all the asked fields and you will get the following:**
 
-![beginning](public/img_9.png)
+![beginning](../public/img_9.png)
 
 **Your file will be in the path :**
 ```php
